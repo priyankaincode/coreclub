@@ -232,7 +232,7 @@ window._toggleDay = async function(day) {
   if (!activeMember) { showToast('Pick your name first!'); return; }
   const thisDate = new Date(2026, 6, day);
   const compareDate = new Date(2026, 6, 10);
-  if (thisDate >= compareDate) return;
+  if (thisDate < new Date(2026, 6, 11)) return;
 
   const key = dayKey(day);
   const arr = logs[key] ? [...logs[key]] : [];
@@ -266,7 +266,7 @@ function renderCalendar() {
   for (let d=1;d<=31;d++) {
     const key = dayKey(d);
     const thisDate = new Date(2026,6,d);
-    const isFuture = thisDate >= compareDate;
+    const isFuture = thisDate < new Date(2026, 6, 11);
     const isToday = key === todayStr;
     const members = logs[key] || [];
     const dots = members.map(mid => {
